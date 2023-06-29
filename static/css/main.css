@@ -1,0 +1,27 @@
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#container {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+main,
+footer {
+  margin: 1rem 0;
+}
+
+.title {
+  margin: 1rem;
+}
+
+.counter {
+  font-size: 1.5rem;
+  cursor: pointer;
+  user-select: none;
+}
