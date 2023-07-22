@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.models import User
+from apps.usuario.models import Usuario
 from django.db import IntegrityError
 
 
@@ -17,10 +17,10 @@ def signUp(request):
         return render(request, "signup.html", {"form": UserCreationForm, "error": "passwords do not match"})
 
     try:
-        user = User.objects.create_user(
+        usuario = Usuario.objects.create_user(
             username=request.POST["username"], password=request.POST["password1"])
-        user.save()
-        login(request, user)
+        usuario.save()
+        login(request, usuario)
         return redirect("news")
     except IntegrityError:
         return render(request, "signup.html", {"form": UserCreationForm, "error": "user already exists. please try a different username."})
@@ -37,9 +37,9 @@ def signIn(request):
 
     username = request.POST["username"]
     password = request.POST["password"]
-    user = authenticate(request, username=username, password=password)
+    usuario = authenticate(request, username=username, password=password)
 
-    if user is None:
+    if usuario is None:
         return render(request, "signin.html", {"form": AuthenticationForm, "error": "username and password do not match"})
-    login(request, user)
+    login(request, usuario)
     return redirect("news")
