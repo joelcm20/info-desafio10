@@ -1,13 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import User
-from apps.news.models import News
+from apps.usuario.models import Usuario
+from apps.recetas.models import Receta
 
 # Create your models here.
-class Comment(models.Model):
-    news = models.ForeignKey(News, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.TextField()
+class Comentario(models.Model):
+    receta = models.ForeignKey(Receta, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    texto = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.text
+        return self.texto

@@ -1,31 +1,31 @@
 from django.shortcuts import redirect, get_object_or_404
 from django.http import HttpResponse
-from apps.news.models import News
-from .models import Comment
+from apps.recetas.models import Receta
+from .models import Comentario
 
 # Create your views here.
 
 
-def createComment(request):
+def crearComentario(request):
     if request.method == "POST":
-        news_id = request.POST["news"]
-        comment = request.POST["text"]
-        news = get_object_or_404(News, id=news_id)
-        user = request.user
-        Comment.objects.create(news=news, user=user, text=comment)
-        return redirect("detail-news", id=news_id)
+        receta_id = request.POST["receta"]
+        texto = request.POST["texto"]
+        receta = get_object_or_404(Receta, id=receta_id)
+        usuario = request.user
+        Comentario.objects.create(receta=receta, usuario=usuario, texto=texto)
+        return redirect("detalle-receta", id=receta_id)
 
-def deleteComment(request, id):
+def borrarComentario(request, id):
     if not request.method == "POST":
         return HttpResponse(status=404)
     
-    comment = get_object_or_404(Comment, id=id)
+    comment = get_object_or_404(Comentario, id=id)
     user = request.user
     if not comment.user == user:
-        return redirect("detail-news", comment.news.id)
+        return redirect("detalle-news", comment.news.id)
     
-    Comment.delete(comment)
-    return redirect("detail-news", comment.news.id)
+    Comentario.delete(comment)
+    return redirect("detalle-receta", comment.news.id)
 
     
 

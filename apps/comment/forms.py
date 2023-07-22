@@ -1,15 +1,15 @@
 from django import forms
-from .models import Comment
+from .models import Comentario
 
 
 class CommentForm(forms.ModelForm):
     class Meta:
-        model = Comment
-        fields = ["text"]
+        model = Comentario
+        fields = ["texto"]
         widgets = {
-            "text": forms.Textarea(attrs={
+            "texto": forms.Textarea(attrs={
                 "class": "form-control",
-                "name": "text",
+                "name": "texto",
                 "placeholder": "Leave a comment"
             })
         }
