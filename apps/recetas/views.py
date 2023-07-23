@@ -4,10 +4,14 @@ from .forms import RecetaForm
 from .models import Receta
 from apps.comment.models import Comentario
 from apps.comment.forms import CommentForm
+from django.contrib.auth.decorators import user_passes_test
+from apps.usuario.utils import is_registered
+
 
 # Create your views here.
 
-
+#ejemplo
+@user_passes_test(is_registered)
 def getReceta(request):
     if request.method == "POST" and "borrar-recetas" in request.POST:
         usuario = request.user
@@ -62,7 +66,7 @@ def actualizarReceta(request, id):
 
     if request.method == "GET":
         return render(request, "actualizar-receta.html", {"form": form})
-    
+
     form = RecetaForm(request.POST, request.FILES, instance=receta)
     form.save()
     return redirect("detalle-receta", id)
