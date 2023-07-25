@@ -1,3 +1,4 @@
+{% load custom_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,11 +27,15 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a href="{% url 'news' %}" class="nav-link">News</a>
+                <a href="{% url 'recetas' %}" class="nav-link">Recetas</a>
               </li>
+              
+              {# crear receta si el usuario es colaborador #}
+              {% if user|user_belongs_to_group:'Collaborator' %}
               <li class="nav-item">
-                <a href="{% url 'create-news' %}" class="nav-link">Create-News</a>
+                <a href="{% url 'crear-receta' %}" class="nav-link">Crear-Receta</a>
               </li>
+              {% endif %}
               <hr class="border border-primary border-3 opacity-75 d-md-none">
               <li class="nav-item text-center fw-bold d-md-none">
                 <i class="fa-solid fa-user"></i>

@@ -1,5 +1,5 @@
 {% extends "layout.html" %} {% block content %}
-
+{% load custom_tags %}
 <main class="container" style="min-height: 100vh">
   <div class="row">
     <div class="col-sm-12 col-md-6 offset-md-3">
@@ -17,8 +17,10 @@
           cupiditate eligendi doloribus distinctio, nulla cum molestias aliquam
           vitae eius a voluptate ea.
         </p>
-        {% if user.is_authenticated %}
-        <a href="{% url 'create-news' %}" class="btn btn-dark">Write a article</a>
+        {% if user.is_authenticated and user|user_belongs_to_group:"Collaborator" %}
+        <a href="{% url 'crear-receta' %}" class="btn btn-dark">Nueva Receta</a>
+        {% elif user.is_authenticated and not user|user_belongs_to_group:"Collaborator" %}
+        <a href="{% url 'recetas' %}" class="btn btn-dark">Ver Receta</a>
         {% else %}
         <div class="d-flex justify-content-center gap-1">
           <a href="{% url 'sign-in' %}" class="btn btn-primary">

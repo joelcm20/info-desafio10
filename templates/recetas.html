@@ -1,1 +1,41 @@
-<h1>recetas</h1>
+{% extends "layout.html" %} {% block content %}
+<main class="container" style="min-height: 100vh;">
+  <h1 class="text-center display-6 my-5">Recetas</h1>
+  <div class="row">
+    {% if recetas %} {% for receta in recetas %}
+    <div class="col-sm-12 col-md-4 card">
+      <img src="{{receta.imagen.url}}" class="card-img-top img-fluid" alt="{{receta.nombre}}"
+        style="object-fit: cover; width: 250; height: 250px;" />
+      <div class="card-body">
+        <h5 class="card-title text-center">{{receta.nombre}}</h5>
+        
+        <div class="d-flex justify-content-between align-items-center">
+          <a href="{% url 'detalle-receta' receta.id %}" class="btn btn-primary">go to detail</a>
+          {% if receta.usuario == user %}
+          <div class="dropdown px-2">
+            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-gear"></i>
+            </a>
+            <ul class="dropdown-menu text-small">
+              <li><a class="dropdown-item" href="{% url 'actualizar-receta' receta.id %}">Actualizar</a></li>
+              <li>
+                <form method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="borrar-recetas" value="{{receta.id}}">
+                  <button type="submit" class="dropdown-item">Borrar</button>
+                </form>
+              </li>
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %} {%else%}
+    <div class="alert alert-warning" role="alert">No hay recetas todavia.</div>
+    {% endif %}
+  </div>
+  </div>
+</main>
+{% endblock %}
