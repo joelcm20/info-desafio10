@@ -26,6 +26,7 @@ urlpatterns = [
     path("sign-up/", views.signUp, name="sign-up"),
     path("sign-out", views.signOut, name="sign-out"),
     path("sign-in", views.signIn, name="sign-in"),
+    path("acerca-de", views.acercaDe, name="acerca-de"),
     path("recetas/", include("apps.recetas.urls")),
     path("comment/", include("apps.comment.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
