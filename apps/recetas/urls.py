@@ -2,7 +2,7 @@ from django.urls import path
 from apps.recetas import views
 
 urlpatterns = [
-    path("", views.getReceta, name="receta"),
+    path("", views.getReceta, name="recetas"),
     path("detalle/<int:id>", views.detalleReceta, name="detalle-receta"),
     path("crear/", views.crearReceta, name="crear-receta"),
     path("borrar/<int:id>", views.borrarReceta, name="borrar-receta"),

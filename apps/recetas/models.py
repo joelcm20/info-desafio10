@@ -15,7 +15,7 @@ class Receta(models.Model):
     nombre = models.CharField(max_length=100)
     ingredientes = models.TextField()
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
-    imagen = models.ImageField(upload_to="news/")
+    imagen = models.ImageField(upload_to="recetas/")
     id_categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
