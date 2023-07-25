@@ -3,6 +3,7 @@ from .forms import ContactoForm
 
 # Create your views here.
 
+
 def contacto(request):
     if request.method == 'POST':
         form = ContactoForm(request.POST)
@@ -10,5 +11,4 @@ def contacto(request):
             form.save()
     else:
         form = ContactoForm()
-    return render(request, 'contacto.html', {'form':form})
-
+    return render(request, 'contacto.html', {'form': form})

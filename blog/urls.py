@@ -28,5 +28,5 @@ urlpatterns = [
     path("sign-in", views.signIn, name="sign-in"),
     path("recetas/", include("apps.recetas.urls")),
     path("comment/", include("apps.comment.urls")),
-    path('', include('contacto.html')),
+    path('', include('apps.contacto.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
