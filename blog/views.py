@@ -43,3 +43,7 @@ def signIn(request):
         return render(request, "signin.html", {"form": AuthenticationForm, "error": "username and password do not match"})
     login(request, user)
     return redirect("news")
+
+
+def acercaDe(request):
+    return render(request, "acercade.html")
