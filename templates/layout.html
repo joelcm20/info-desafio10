@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <img class="backgroundImage" src="{% static 'img/cocina.jpg' %}"/>
+  <img class="backgroundImage" src="{% static 'img/cocina.jpg' %}" />
   <div class="container">
     <header>
       <nav class="navbar navbar-expand-md bg-body-tertiary">
@@ -26,20 +26,16 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          {# menu #}
-          {% if user.is_authenticated %}
+          {# menu - usuarios unicamente registrados #}
+          {% if user.is_authenticated and not user|user_belongs_to_group:'Collaborator' %}
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a href="{% url 'recetas' %}" class="nav-link">Recetas</a>
               </li>
-              
-              {# crear receta si el usuario es colaborador #}
-              {% if user|user_belongs_to_group:'Collaborator' %}
               <li class="nav-item">
-                <a href="{% url 'crear-receta' %}" class="nav-link">Crear-Receta</a>
+                <a href=" {% url 'acerca-de' %}" class="nav-link">AcercaDe</a>
               </li>
-              {% endif %}
               <hr class="border border-primary border-3 opacity-75 d-md-none">
               <li class="nav-item text-center fw-bold d-md-none">
                 <i class="fa-solid fa-user"></i>
@@ -53,9 +49,41 @@
               </li>
             </ul>
           </div>
+
+          {# menu - usuarios colaboradores #}
+          {% elif user.is_authenticated and user|user_belongs_to_group:'Collaborator' %}
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a href="{% url 'recetas' %}" class="nav-link">Recetas</a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'crear-receta' %}" class="nav-link">Crear-Receta</a>
+              </li>
+              <li class="nav-item">
+                <a href=" {% url 'acerca-de' %}" class="nav-link">AcercaDe</a>
+              </li>
+              <hr class="border border-primary border-3 opacity-75 d-md-none">
+              <li class="nav-item text-center fw-bold d-md-none">
+                <i class="fa-solid fa-user"></i>
+                {{user.username}}
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'sign-out' %}">
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  Sign Out
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {# menu - usuarios visitantes (no registrados) #}
           {% else %}
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+              <li class="nav-item">
+                <a href="{% url 'recetas' %}" class="nav-link">Recetas</a>
+              </li>
               <li class="nav-item">
                 <a href="{% url 'sign-in' %}" class="nav-link">SignIn</a>
               </li>
