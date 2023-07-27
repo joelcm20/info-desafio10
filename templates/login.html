@@ -1,0 +1,37 @@
+{% extends "layout.html" %} {% block content %}
+{% load custom_tags %}
+<main class="container" style="min-height: 100vh">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 offset-md-3">
+      <div class="card card-body">
+        <h1 class="card-title text-center display-6 my-5">
+          {% if user.is_authenticated %}
+          Welcome {{user.username}}!
+          {% else %}
+          Welcome!
+          {% endif %}
+        </h1>
+        <p class="card-text">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
+          repellendus ratione iste voluptatum eos odit rem perspiciatis
+          cupiditate eligendi doloribus distinctio, nulla cum molestias aliquam
+          vitae eius a voluptate ea.
+        </p>
+        {% if user.is_authenticated and user|user_belongs_to_group:"Collaborator" %}
+        <a href="{% url 'crear-receta' %}" class="btn btn-dark">Nueva Receta</a>
+        {% elif user.is_authenticated and not user|user_belongs_to_group:"Collaborator" %}
+        <a href="{% url 'recetas' %}" class="btn btn-dark">Ver Receta</a>
+        {% else %}
+        <div class="d-flex justify-content-center gap-1">
+          <a href="{% url 'sign-in' %}" class="btn btn-primary">
+            <i class="fa-solid fa-right-from-bracket px-1"></i>SignIn
+          </a>
+          <a href="{% url 'sign-up' %}" class="btn btn-dark">SignUp</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

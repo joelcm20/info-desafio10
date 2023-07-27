@@ -1,37 +1,194 @@
-{% extends "layout.html" %} {% block content %}
+{%load static%}
+{% block content %}
 {% load custom_tags %}
-<main class="container" style="min-height: 100vh">
-  <div class="row">
-    <div class="col-sm-12 col-md-6 offset-md-3">
-      <div class="card card-body">
-        <h1 class="card-title text-center display-6 my-5">
-          {% if user.is_authenticated %}
-          Welcome {{user.username}}!
-          {% else %}
-          Welcome!
-          {% endif %}
-        </h1>
-        <p class="card-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-          repellendus ratione iste voluptatum eos odit rem perspiciatis
-          cupiditate eligendi doloribus distinctio, nulla cum molestias aliquam
-          vitae eius a voluptate ea.
-        </p>
-        {% if user.is_authenticated and user|user_belongs_to_group:"Collaborator" %}
-        <a href="{% url 'crear-receta' %}" class="btn btn-dark">Nueva Receta</a>
-        {% elif user.is_authenticated and not user|user_belongs_to_group:"Collaborator" %}
-        <a href="{% url 'recetas' %}" class="btn btn-dark">Ver Receta</a>
-        {% else %}
-        <div class="d-flex justify-content-center gap-1">
-          <a href="{% url 'sign-in' %}" class="btn btn-primary">
-            <i class="fa-solid fa-right-from-bracket px-1"></i>SignIn
-          </a>
-          <a href="{% url 'sign-up' %}" class="btn btn-dark">SignUp</a>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Nuestro Blog de recetas de cocina</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="static\css\main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col">
+          <a class="navbar-brand" href="home.html">Nuestro Blog de recetas de cocina</a>
         </div>
-        {% endif %}
+        <div class="col-md-4 d-flex justify-content-center justify-content-md-end mt-3 mt-md-3">
+          <div class="social-media">
+            <p class="mb-0 d-flex align-items-center">
+              <a href="#" class="d-flex align-items-center justify-content-center mx-2"><span class="fa fa-facebook"></span></a>
+              <a href="#" class="d-flex align-items-center justify-content-center mx-2"><span class="fa fa-twitter"></span></a>
+              <a href="#" class="d-flex align-items-center justify-content-center mx-2"><span class="fa fa-instagram"></span></a>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</main>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="ftco-navbar">
+      <div class="container">
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="templates\home.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="templates\recetas.html" class="nav-link">Recetas</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">News</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Acerca de nosotros</a></li>
+            <li class="nav-item"><a href="templates\login.html" class="nav-link">Login</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </section>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-title text-center">
+              <h4>Deliciosa Empanada</h4>
+            </div>
+            <div class="image-container">
+              <img class="card-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR20w4xwsTz1AFEi67d9vNz8iih0Hv3goKgJXUdFCzK4dPj2N_4lxH235Lb9guEzVeEAI4&usqp=CAU" alt="Aqui va imagen">
+            </div>
+            <div class="card-body">
+              <p class="card-text">Una empanada es una fina masa de pan,<br>
+                masa quebrada u hojaldre rellena con una preparación<br>
+                salada o dulce y cocida al horno o frita.<br>
+                El relleno puede incluir carnes rojas o blancas, queso, pescado, verduras o fruta.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-title text-center">
+              <h4>Deliciosa Empanada</h4>
+            </div>
+            <div class="image-container">
+              <img class="card-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR20w4xwsTz1AFEi67d9vNz8iih0Hv3goKgJXUdFCzK4dPj2N_4lxH235Lb9guEzVeEAI4&usqp=CAU" alt="Aqui va imagen">
+            </div>
+            <div class="card-body">
+              <p class="card-text">Una empanada es una fina masa de pan,<br>
+                masa quebrada u hojaldre rellena con una preparación<br>
+                salada o dulce y cocida al horno o frita.<br>
+                El relleno puede incluir carnes rojas o blancas, queso, pescado, verduras o fruta.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-title text-center">
+              <h4>Deliciosa Empanada</h4>
+            </div>
+            <div class="image-container">
+              <img class="card-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR20w4xwsTz1AFEi67d9vNz8iih0Hv3goKgJXUdFCzK4dPj2N_4lxH235Lb9guEzVeEAI4&usqp=CAU" alt="Aqui va imagen">
+            </div>
+            <div class="card-body">
+              <p class="card-text">Una empanada es una fina masa de pan,<br>
+                masa quebrada u hojaldre rellena con una preparación<br>
+                salada o dulce y cocida al horno o frita.<br>
+                El relleno puede incluir carnes rojas o blancas, queso, pescado, verduras o fruta.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-title text-center">
+              <h4>Deliciosa Empanada</h4>
+            </div>
+            <div class="image-container">
+              <img class="card-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR20w4xwsTz1AFEi67d9vNz8iih0Hv3goKgJXUdFCzK4dPj2N_4lxH235Lb9guEzVeEAI4&usqp=CAU" alt="Aqui va imagen">
+            </div>
+            <div class="card-body">
+              <p class="card-text">Una empanada es una fina masa de pan,<br>
+                masa quebrada u hojaldre rellena con una preparación<br>
+                salada o dulce y cocida al horno o frita.<br>
+                El relleno puede incluir carnes rojas o blancas, queso, pescado, verduras o fruta.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-title text-center">
+              <h4>Deliciosa Empanada</h4>
+            </div>
+            <div class="image-container">
+              <img class="card-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR20w4xwsTz1AFEi67d9vNz8iih0Hv3goKgJXUdFCzK4dPj2N_4lxH235Lb9guEzVeEAI4&usqp=CAU" alt="Aqui va imagen">
+            </div>
+            <div class="card-body">
+              <p class="card-text">Una empanada es una fina masa de pan,<br>
+                masa quebrada u hojaldre rellena con una preparación<br>
+                salada o dulce y cocida al horno o frita.<br>
+                El relleno puede incluir carnes rojas o blancas, queso, pescado, verduras o fruta.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-title text-center">
+              <h4>Deliciosa Empanada</h4>
+            </div>
+            <div class="image-container">
+              <img class="card-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR20w4xwsTz1AFEi67d9vNz8iih0Hv3goKgJXUdFCzK4dPj2N_4lxH235Lb9guEzVeEAI4&usqp=CAU" alt="Aqui va imagen">
+            </div>
+            <div class="card-body">
+              <p class="card-text">Una empanada es una fina masa de pan,<br>
+                masa quebrada u hojaldre rellena con una preparación<br>
+                salada o dulce y cocida al horno o frita.<br>
+                El relleno puede incluir carnes rojas o blancas, queso, pescado, verduras o fruta.</p>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="contact-info">
+            <h3>Contacto</h3>
+            <p><i class="fa fa-phone"></i> (+00) 1234 5678</p>
+            <p><i class="fa fa-map-marker"></i> Dirección de ejemplo</p>
+            <p><i class="fa fa-envelope"></i> correo@example.com</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="about-us">
+            <h3>Acerca de nosotros</h3>
+            <p>Una empanada es una fina masa de pan,<br>
+              masa quebrada u hojaldre rellena con una preparación<br>
+              salada o dulce y cocida al horno o frita.<br>
+              El relleno puede incluir carnes rojas o blancas, queso, pescado, verduras o fruta.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <p class="rights">© 2023 All rights reserved by Grupo 10 - informatorio</p>
+          </div>
+          <div class="col-md-6 social-icons">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-instagram"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
 
 {% endblock %}
