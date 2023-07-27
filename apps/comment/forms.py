@@ -8,8 +8,11 @@ class CommentForm(forms.ModelForm):
         fields = ["texto"]
         widgets = {
             "texto": forms.Textarea(attrs={
-                "class": "form-control",
+                "class": "form-control bg-body-tertiary",
                 "name": "texto",
-                "placeholder": "Leave a comment"
+                "placeholder": "Deja un comentario..."
             })
+        }
+        labels = {
+            "texto": "Comentar"
         }

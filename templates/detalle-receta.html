@@ -1,52 +1,69 @@
 {% extends "layout.html" %}
+{% load custom_tags %}
 
 {% block content %}
 <main class="container">
   <div class="row">
     <div class="col-12">
       {# image #}
-      <div style="max-height: auto" class="bg-danger text-center">
+      <div style="max-height: auto" class="text-center">
         <img style="object-fit: cover" class="card-image-top card-fluid rounded w-100" src="{{receta.imagen.url}}"
           alt="{{receta.imagen.url}}" />
       </div>
-      <div class="row">
-        <div class="col-12 col-md-7">
-          <h3 class="text-center py-4">{{receta.nombre}}</h3>
-          <p>{{receta.ingredientes}}</p>
-        </div>
-        <div class="col-12 col-md-5">
-          <h3 class="text-center py-4">Comentarios</h3>
-          <form action="{% url 'create-comment' %}" method="post">
-            {% csrf_token %}
-            {{form}}
-            <input type="hidden" name="news" value="{{news.id }}">
-            <button class="btn btn-primary">save</button>
-          </form>
-          <div class="my-3">
-            {% for comment in comments %}
-            <div class="card card-body">
-              <div class="card-title d-flex justify-content-between fw-bold">
-                <div>
-                  <i class="fa-sharp fa-regular fa-user"></i>
-                  {{comment.user.username}}
-                </div>
-                <form action="{% url 'delete-comment' comment.id %}" method="post">
-                  {% if comment.user == user %}
-                  {% csrf_token %}
-                  <button class="btn btn-link text-danger"><i class="fa-sharp fa-solid fa-delete-left"></i></button>
-                  {% else %}
-                  <button disabled class="btn btn-link text-danger"><i class="fa-sharp fa-solid fa-delete-left"></i></button>
-                  {% endif %}
-                </form>
-              </div>
-              <div class="card-text fst-italic">{{comment.text}}</div>
+    </div>
+
+    <div class="col-12 col-md-7">
+      <h3 class="text-center text-white py-3">{{receta.nombre}}</h3>
+      <p class="text-white">{{receta.ingredientes}}</p>
+    </div>
+
+    <div class="col-12 col-md-5">
+      <h3 class="text-center text-white py-3">Comentarios</h3>
+
+      {% if not user.is_authenticated %}
+      <div class="alert alert-warning m-0" role="alert">
+        Inicia session para comentar!
+      </div>
+      {% endif %}
+
+      <form action="{% url 'create-comment' %}" method="post">
+        {% if user.is_authenticated %}
+        {% csrf_token %}
+        {{form}}
+        <input type="hidden" name="receta" value="{{receta.id }}">
+        <button class="btn btn-primary bg-gradient">Guardar</button>
+        {% else %}
+        {{form}}
+        <input type="hidden" name="receta" value="{{receta.id}}">
+        <button disabled class="btn btn-primary">Guardar</button>
+        {% endif %}
+      </form>
+      <div class="my-3">
+        {% for comment in comments %}
+        <div class="card card-body bg-body-tertiary">
+          <div class="card-title d-flex justify-content-between fw-bold">
+            <div>
+              <i class="fa-sharp fa-regular fa-user"></i>
+              {{comment.usuario.username}}
             </div>
-            {% empty %}
-            <p class="text-center pt-5">No hay comentarios todavia.</p>
-            {% endfor %}
+            <form action="{% url 'delete-comment' comment.id %}" method="post">
+              {% if comment.usuario == user or user|user_belongs_to_group:"Collaborator" %}
+              {% csrf_token %}
+              <button class="btn btn-link text-danger"><i class="fa-sharp fa-solid fa-delete-left"></i></button>
+              {% else %}
+              <button disabled class="btn btn-link text-danger"><i
+                  class="fa-sharp fa-solid fa-delete-left"></i></button>
+              {% endif %}
+            </form>
           </div>
+          <div class="card-text fst-italic">{{comment.texto}}</div>
         </div>
+        {% empty %}
+        <p class="text-center pt-5">No hay comentarios todavia.</p>
+        {% endfor %}
       </div>
     </div>
+
+  </div>
 </main>
 {% endblock %}
