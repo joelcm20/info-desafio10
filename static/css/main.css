@@ -47,7 +47,9 @@
 
 /* Efecto de resaltado al pasar el mouse sobre las imágenes */
 .card-img-top:hover {
-  transform: scale(1.05); /* Ajusta el valor para cambiar el tamaño en el resaltado */
+  transform: scale(
+    1.05
+  ); /* Ajusta el valor para cambiar el tamaño en el resaltado */
 }
 
 /* Estilos para la sección de contenido */
@@ -55,7 +57,7 @@
   padding: 3em 0;
   background-color: var(--color-gray-light);
   color: var(--color-gray);
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 /* Estilos para el footer */
