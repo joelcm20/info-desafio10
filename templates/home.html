@@ -3,7 +3,7 @@
 {% load custom_tags %}
 
 {% block content %}
-<main style="min-height: 100vh">
+<main class="container">
   <div class="row">
     <div class="col-sm-12 col-md-6 offset-md-3">
       <div class="card card-body my-3">
@@ -14,11 +14,10 @@
           Welcome!
           {% endif %}
         </h1>
-        <p class="card-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-          repellendus ratione iste voluptatum eos odit rem perspiciatis
-          cupiditate eligendi doloribus distinctio, nulla cum molestias aliquam
-          vitae eius a voluptate ea.
+        <p class="card-text text-break">
+          ¡Bienvenidos al delicioso mundo de nuestro blog de cocina! Aquí, te sumergirás en un festín de sabores, aromas y colores que desatarán tu pasión culinaria. Nuestra misión es llevar tu experiencia en la cocina a nuevas alturas, y para ello, hemos reunido las recetas más exquisitas y fáciles de seguir.
+          
+          Descubrirás una amplia variedad de platos que se adaptan a todos los paladares y ocasiones. Desde suculentos platillos tradicionales hasta innovadoras creaciones gastronómicas, estamos seguros de que encontrarás algo que satisfaga tus antojos y despierte tu creatividad culinaria.
         </p>
         {% if user.is_authenticated and user|user_belongs_to_group:"Collaborator" %}
         <a href="{% url 'crear-receta' %}" class="btn btn-dark">Nueva Receta</a>
@@ -35,5 +34,5 @@
       </div>
     </div>
   </div>
-  </section>
-  {% endblock %}
+</main>
+{% endblock %}

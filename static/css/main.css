@@ -9,10 +9,34 @@
   --color-white: #fff; /* Blanco */
 }
 
-/* Estilos para la sección del encabezado */
-.container {
-  max-width: 1200px;
+body {
+  /* Ubicación de la imagen */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("../img/cocina.jpg");
+  /* Para dejar la imagen de fondo centrada, vertical y horizontalmente */
+  background-position: center center;
+  /* Para que la imagen de fondo no se repita */
+  background-repeat: no-repeat;
+  /* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
+  background-attachment: fixed;
+  /* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
+  background-size: cover;
+  /* Se muestra un color de fondo mientras se está cargando la imagende fondo o si hay problemas para cargarla */
+  background-color: #6699;
 }
+
+.navbar-toggler-icon {
+  background-color: white;
+  border-radius: 20%;
+  padding: 1.4rem;
+}
+
+.receta-info {
+  white-space: pre-wrap; /* Permite respetar los saltos de línea */
+  font-family: inherit;
+}
+
+/* Estilos para la sección del encabezado */
 
 .heading-section h2 {
   font-size: 36px;
@@ -26,15 +50,17 @@
   justify-content: flex-end;
   background-color: var(--color-gray);
 }
-
-.navbar-brand {
-  color: var(--color-orange);
-  font-weight: 700;
-  font-size: 24px;
+.navbar-nav a {
+  color: white;
 }
-
-.navbar-brand:hover {
-  color: var(--color-green);
+.navbar-nav a:hover {
+  color: #000;
+  background: var(--color-gray-light);
+}
+/* estilo para links activos */
+.active {
+  color: #000;
+  background: var(--color-gray-light);
 }
 
 /* Estilos para las imágenes en las tarjetas */

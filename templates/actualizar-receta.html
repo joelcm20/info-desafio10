@@ -2,15 +2,15 @@
 <main class="container">
   <div class="row">
     <div class="col-sm-12 col-md-6 offset-md-3">
-      <h1 class="text-center display-6 my-5">Actualizar Receta</h1>
+      <form class="card card-body my-3" method="post" enctype="multipart/form-data">
+        <h1 class="text-center display-6 my-3">Actualizar Receta</h1>
 
-      {% if error %}
-      <div class="alert alert-danger" role="alert">{{error}}</div>
-      {% endif %}
+        {% if error %}
+        <div class="alert alert-danger" role="alert">{{error}}</div>
+        {% endif %}
 
-      <form class="card card-body" method="post" enctype="multipart/form-data">
         {% csrf_token %} {{form}}
-        <button class="btn btn-primary width-100">update</button>
+        <button class="btn btn-primary width-100">Actualizar</button>
       </form>
     </div>
   </div>
