@@ -1,0 +1,117 @@
+/* styles.css */
+
+/* Colores */
+:root {
+  --color-orange: #ff9800; /* Naranja suave */
+  --color-green: #0f9d58; /* Verde */
+  --color-gray-light: #f7f7f7; /* Gris claro */
+  --color-gray: #33333372; /* Gris */
+  --color-white: #fff; /* Blanco */
+}
+
+/* Estilos para la sección del encabezado */
+.container {
+  max-width: 1200px;
+}
+
+.heading-section h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--color-gray);
+  margin-bottom: 20px;
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+  justify-content: flex-end;
+  background-color: var(--color-gray);
+}
+
+.navbar-brand {
+  color: var(--color-orange);
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.navbar-brand:hover {
+  color: var(--color-green);
+}
+
+/* Estilos para las imágenes en las tarjetas */
+.card-img-top {
+  object-fit: cover;
+  width: 100%; /* El 100% del ancho del contenedor */
+  height: 200px; /* Ajusta la altura según tus necesidades */
+  transition: transform 0.2s; /* Añade una transición para el efecto de resaltado */
+}
+
+/* Efecto de resaltado al pasar el mouse sobre las imágenes */
+.card-img-top:hover {
+  transform: scale(
+    1.05
+  ); /* Ajusta el valor para cambiar el tamaño en el resaltado */
+}
+
+/* Estilos para la sección de contenido */
+.section {
+  padding: 3em 0;
+  background-color: var(--color-gray-light);
+  color: var(--color-gray);
+  font-family: "Roboto", sans-serif;
+}
+
+/* Estilos para el footer */
+.footer {
+  background-color: #333333;
+  color: #ffffff;
+  padding: 40px 0;
+}
+
+.footer h3 {
+  color: #ff9800;
+  font-size: 20px;
+}
+
+.footer p {
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 15px;
+}
+
+.footer-bar {
+  background-color: #f7f7f7;
+  color: #333333;
+  padding: 15px 0;
+}
+
+.footer-bar p.rights {
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.footer-bar .social-icons {
+  text-align: right;
+}
+
+.footer-bar .fa {
+  color: #333333;
+  font-size: 24px;
+  margin-left: 10px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .footer {
+    text-align: center;
+  }
+  .footer .col-md-6 {
+    margin-bottom: 30px;
+  }
+  .footer-bar .col-md-6 {
+    text-align: left;
+  }
+  .footer-bar .social-icons {
+    text-align: left;
+    margin-top: 10px;
+  }
+}

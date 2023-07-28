@@ -1,12 +1,9 @@
-{% extends "layout.html" %}
-{% load static %}
+{% extends "layout.html" %} {% block content %}
 {% load custom_tags %}
-
-{% block content %}
-<main style="min-height: 100vh">
+<main class="container" style="min-height: 100vh">
   <div class="row">
     <div class="col-sm-12 col-md-6 offset-md-3">
-      <div class="card card-body my-3">
+      <div class="card card-body">
         <h1 class="card-title text-center display-6 my-5">
           {% if user.is_authenticated %}
           Welcome {{user.username}}!
@@ -35,5 +32,6 @@
       </div>
     </div>
   </div>
-  </section>
-  {% endblock %}
+</main>
+
+{% endblock %}
