@@ -59,6 +59,10 @@
                   class="nav-link {% if request.resolver_match.url_name == 'recetas' %}active{% endif %}">Recetas</a>
               </li>
               <li class="nav-item">
+                <a href="{% url 'categorias' %}"
+                  class="nav-link {% if request.resolver_match.url_name == 'categorias' %}active{% endif %}">Categorias</a>
+              </li>
+              <li class="nav-item">
                 <a href="{% url 'crear-receta' %}"
                   class="nav-link {% if request.resolver_match.url_name == 'crear-receta' %}active{% endif %}">Crear-Receta</a>
               </li>

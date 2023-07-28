@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<main class="container">
+    <div class="row my-3">
+        <div class="col-sm-12 col-md-7">
+            <h2 class="text-center text-white my-3">Categorias</h2>
+            <ul class="list-group">
+                {% for categoria in categorias %}
+                <li class="list-group-item my-1 d-flex align-items-center justify-content-between">
+                    {{categoria.nombre}}
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="eliminar-categoria" value="{{categoria.id}}">
+                        <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                    </form>
+                </li>
+                {% empty %}
+                <div class="alert alert-info">No hay categorias.</div>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-sm-12 col-md-5">
+            <form class="card card-body" method="post">
+                <h1 class="text-center display-6 my-3">Crear Categoria</h1>
+
+                {% if error %}
+                <div class="alert alert-danger" role="alert">{{error}}</div>
+                {% endif %}
+
+                {% csrf_token %} {{form}}
+                <button class="btn btn-primary width-100">Crear Categoria</button>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}

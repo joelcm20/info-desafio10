@@ -1,5 +1,5 @@
 from django import forms
-from .models import Receta
+from .models import Receta, Categoria
 
 
 class RecetaForm(forms.ModelForm):
@@ -14,4 +14,12 @@ class RecetaForm(forms.ModelForm):
         }
         labels = {
             "id_categoria": "categoria"
+        }
+
+class CategoriaForm(forms.ModelForm):
+    class Meta:
+        model = Categoria
+        fields = ["nombre"]
+        widgets = {
+            "nombre": forms.TextInput(attrs={"class": "form-control mb-3"})
         }
