@@ -36,6 +36,10 @@
               <li class="nav-item">
                 <a href=" {% url 'acerca-de' %}" class="nav-link">AcercaDe</a>
               </li>
+              <li class="nav-item">
+                <a href=" {% url 'contacto' %}"
+                  class="nav-link {% if request.resolver_match.url_name == 'contacto' %}active{% endif %}">Contacto</a>
+              </li>
               <hr class="border border-primary border-3 opacity-75 d-md-none">
               <li class="nav-item text-center text-white fw-bold d-md-none">
                 <i class="fa-solid fa-user"></i>
@@ -70,6 +74,10 @@
                 <a href=" {% url 'acerca-de' %}"
                   class="nav-link {% if request.resolver_match.url_name == 'acerda-de' %}active{% endif %}">AcercaDe</a>
               </li>
+              <li class="nav-item">
+                <a href=" {% url 'contacto' %}"
+                  class="nav-link {% if request.resolver_match.url_name == 'contacto' %}active{% endif %}">Contacto</a>
+              </li>
               <hr class="border border-primary border-3 opacity-75 d-md-none">
               <li class="nav-item text-center text-white fw-bold d-md-none">
                 <i class="fa-solid fa-user"></i>
@@ -103,6 +111,10 @@
               <li class="nav-item">
                 <a href=" {% url 'acerca-de' %}"
                   class="nav-link {% if request.resolver_match.url_name == 'acerca-de' %}active{% endif %}">AcercaDe</a>
+              </li>
+              <li class="nav-item">
+                <a href=" {% url 'contacto' %}"
+                  class="nav-link {% if request.resolver_match.url_name == 'contacto' %}active{% endif %}">Contacto</a>
               </li>
             </ul>
           </div>
