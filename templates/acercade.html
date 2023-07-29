@@ -2,37 +2,41 @@
 
 {% block content %}
 
-<main class="container" style="min-height: 100vh">
+<main class="container" style="min-height: 100vh; display: flex; justify-content: center; align-items: center;">
     <div class="row">
-        <div class="col-sm-12 col-md-6 offset-md-1">
-            <div class="my-5">
-
-                <p>
-                    Tú sabes que somos de calle, hay cría y corazón<br>
-                    Siente el fuego, las reglas del juego las pongo yo<br>
-                    Porque somos de calle, hay cría y corazón<br>
-                    Siente el fuego, las reglas del juego las pongo yo<br>
-                </p>
-
+      <div class="col-md-6" style="background-color: rgba(255, 255, 255, 0.8); border-radius: 10px; padding: 20px; margin-top: 50px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: flex; align-items: center;">
+        <div style="flex: 1;">
+          <div class="my-4">
+            <div class="about-us">
+              <h3 style="text-align: center;">Acerca de nosotros</h3>
+              <p style="text-align: left;">Explorando el mundo culinario, un festín de sabores exquisitos.<br>
+                Satisfacemos todos los paladares con recetas fáciles e innovadoras.<br>
+                Despierta tu creatividad culinaria con nuestras creaciones gastronómicas.</p>
+              <br>
+              <p style="text-align: left;">En nuestro grupo de estudio, proveniente de Chaco,<br>
+                nos unimos con determinación para conquistar los desafíos de programación.<br>
+                Juntos, hemos trascendido fronteras y llevado nuestras habilidades al mundo entero.</p>
             </div>
-
-            <h3>INTEGRANTES</h3>
-            <ol>
-                Pablo Acevedo <br>
-                Matías Gastón Serial Trachta <br>
-                Mauro Rodrigo Lugo <br>
-                Julio R. Escanciano Gonzale<br>
-                Gabriel Leiva<br>
-                Joel Chavez<br>
-                Maximiliano Imanol Aguer<br>
-                Cristian J. Salto<br>
-                Adrián Fabricio A. Herrera<br>
-            </ol>
-            </form>
+          </div>
+          <h3 style="text-align: center;">INTEGRANTES</h3>
+          <ol style="text-align: left; padding-left: 20px;">
+            <li>Pablo Acevedo</li>
+            <li>Matías Gastón Serial Trachta</li>
+            <li>Mauro Rodrigo Lugo</li>
+            <li>Julio R. Escanciano Gonzale</li>
+            <li>Gabriel Leiva</li>
+            <li>Joel Chavez</li>
+            <li>Maximiliano Imanol Aguer</li>
+            <li>Cristian J. Salto</li>
+            <li>Adrián Fabricio A. Herrera</li>
+          </ol>
         </div>
+        <div style="flex: 1; text-align: center;">
+          <img src="https://www.clara.es/medio/2021/12/16/que-comer-hoy_1962056a_1280x1167.jpg" alt="imagen Acerca de" style="max-width: 100%; border-radius: 10px;">
+        </div>
+      </div>
     </div>
-</main>
-
+  </main>
 
 
 {% endblock %}
