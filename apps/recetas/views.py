@@ -10,14 +10,34 @@ from apps.usuario.utils import is_registered, is_collaborator
 
 # Create your views here.
 def getReceta(request):
+    recetas = Receta.objects.all()
+
+
+    categoria = request.GET.get('id_categoria')
+    if categoria:
+        recetas = recetas.filter(categoria=categoria)
+
+  
+    if 'antiguedad_asc' in request.GET:
+        recetas = recetas.order_by('fecha_publicacion')
+    elif 'antiguedad_desc' in request.GET:
+        recetas = recetas.order_by('-fecha_publicacion')
+    elif 'orden_asc' in request.GET:
+        recetas = recetas.order_by('nombre')
+    elif 'orden_desc' in request.GET:
+        recetas = recetas.order_by('-nombre')
+
+
     if request.method == "POST" and "borrar-recetas" in request.POST:
         usuario = request.user
         receta_id = int(request.POST["borrar-recetas"])
         receta = get_object_or_404(Receta, id=receta_id, usuario=usuario)
         Receta.delete(receta)
 
-    recetas = Receta.objects.all()
-    return render(request, "recetas.html", {"recetas": recetas})
+
+    categorias = Categoria.objects.all()  # Asume que tienes un modelo Categoria
+
+    return render(request, "recetas.html", {"recetas": recetas, "categorias": categorias})
 
 
 def detalleReceta(request, id):
