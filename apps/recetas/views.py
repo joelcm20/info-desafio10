@@ -13,9 +13,9 @@ def getReceta(request):
     recetas = Receta.objects.all()
 
 
-    categoria = request.GET.get('id_categoria')
+    categoria = request.GET.get('categoria')
     if categoria:
-        recetas = recetas.filter(categoria=categoria)
+        recetas = recetas.filter(id_categoria=categoria)
 
   
     if 'antiguedad_asc' in request.GET:

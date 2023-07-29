@@ -1,7 +1,36 @@
-{% extends "layout.html" %} {% block content %}
+{% extends "layout.html" %}
+{% block content %}
 <main class="container mb-3">
   <h1 class="text-center text-white display-6 my-5">Recetas</h1>
   <div class="row gap-2">
+
+<div class="d-flex flex-row gap-2">
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      Categorias Disponibles
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      {% for cat in categorias %}
+      <li><a class="dropdown-item" href="?categoria={{ cat.pk }}">{{ cat.nombre }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Ordenar Por
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a href="?antiguedad_asc=1">Más antiguas</a></li>
+          <li><a href="?antiguedad_desc=1">Más recientes</a></li>
+          <li><a href="?orden_asc=1">Alfabético ascendente</a></li>
+          <li></li><a href="?orden_desc=1">Alfabético descende..</a></li>
+        </ul>
+      </div>
+    </div>
+    <br>
     {% if recetas %} {% for receta in recetas %}
     <div class="col-sm-12 col-md-4 card">
       <img src="{{receta.imagen.url}}" class="card-img-top img-fluid" alt="{{receta.nombre}}"
