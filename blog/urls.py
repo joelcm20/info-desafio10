@@ -19,13 +19,16 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from . import views
+from apps.recetas.views import getCategorias
 
 urlpatterns = [
     path("admin/", admin.site.urls, name="admin"),
     path("", views.home, name="home"),
+    path("categorias", getCategorias, name="categorias"),
     path("sign-up/", views.signUp, name="sign-up"),
     path("sign-out", views.signOut, name="sign-out"),
     path("sign-in", views.signIn, name="sign-in"),
+    path("acerca-de", views.acercaDe, name="acerca-de"),
     path("recetas/", include("apps.recetas.urls")),
     path("comment/", include("apps.comment.urls")),
     path('', include('apps.contacto.urls')),

@@ -21,7 +21,7 @@ def signUp(request):
             username=request.POST["username"], password=request.POST["password1"])
         usuario.save()
         login(request, usuario)
-        return redirect("news")
+        return redirect("recetas")
     except IntegrityError:
         return render(request, "signup.html", {"form": UserCreationForm, "error": "user already exists. please try a different username."})
 
@@ -42,4 +42,8 @@ def signIn(request):
     if usuario is None:
         return render(request, "signin.html", {"form": AuthenticationForm, "error": "username and password do not match"})
     login(request, usuario)
-    return redirect("news")
+    return redirect("recetas")
+
+
+def acercaDe(request):
+    return render(request, "acercade.html")

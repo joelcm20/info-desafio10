@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+{% load custom_tags %}
+
+{% block content %}
+<main class="container">
+  <div class="row">
+    <div class="col-12">
+      {# image #}
+      <div class="text-center">
+        <img style="object-fit: cover" class="card-image-top card-fluid rounded w-100" src="{{receta.imagen.url}}"
+          alt="{{receta.imagen.url}}" />
+      </div>
+    </div>
+
+    <div class="col-12 col-md-7">
+      <h3 class="text-center text-white py-3">{{receta.nombre}}</h3>
+      <p class="receta-info text-white">{{receta.ingredientes}}</p>
+
+      {% if receta.usuario == user %}
+      <div class="actions d-flex mt-5 gap-2">
+        <form method="post" action="{% url 'recetas' %}">
+          {% csrf_token %}
+          <input type="hidden" name="borrar-recetas" value="{{receta.id}}">
+          <button type="submit" class="btn btn-danger">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </form>
+        <a class="btn btn-success" href="{% url 'actualizar-receta' receta.id %}">
+          <i class="fa-solid fa-pen"></i>
+        </a>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="col-12 col-md-5">
+      <h3 class="text-center text-white py-3">Comentarios</h3>
+
+      {% if not user.is_authenticated %}
+      <div class="alert alert-warning m-0" role="alert">
+        <a href="{% url 'sign-in' %}">Inicia session</a> para comentar!
+      </div>
+      {% endif %}
+
+      <form action="{% url 'create-comment' %}" method="post">
+        {% if user.is_authenticated %}
+        {% csrf_token %}
+        {{form}}
+        <input type="hidden" name="receta" value="{{receta.id }}">
+        <button class="btn btn-primary bg-gradient">Guardar</button>
+        {% else %}
+        {{form}}
+        <input type="hidden" name="receta" value="{{receta.id}}">
+        <button disabled class="btn btn-primary">Guardar</button>
+        {% endif %}
+      </form>
+      <div class="my-3">
+        {% for comment in comments %}
+        <div class="card card-body bg-body-tertiary">
+          <div class="card-title d-flex justify-content-between fw-bold">
+            <div>
+              <i class="fa-sharp fa-regular fa-user"></i>
+              {{comment.usuario.username}}
+            </div>
+            <form action="{% url 'delete-comment' comment.id %}" method="post">
+              {% if comment.usuario == user or user|user_belongs_to_group:"Collaborator" %}
+              {% csrf_token %}
+              <button class="btn btn-link text-danger"><i class="fa-sharp fa-solid fa-delete-left"></i></button>
+              {% else %}
+              <button disabled class="btn btn-link text-danger"><i
+                  class="fa-sharp fa-solid fa-delete-left"></i></button>
+              {% endif %}
+            </form>
+          </div>
+          <div class="card-text fst-italic">{{comment.texto}}</div>
+        </div>
+        {% empty %}
+        <p class="text-center pt-5">No hay comentarios todavia.</p>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</main>
+{% endblock %}
