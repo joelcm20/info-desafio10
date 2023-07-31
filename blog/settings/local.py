@@ -2,7 +2,7 @@ from .base import *
 import os
 from dotenv import load_dotenv
 
-load_dotenv(os.path.join(BASE_DIR, ".env"))
+load_dotenv(os.path.join(BASE_DIR, ".dev.env"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
