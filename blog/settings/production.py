@@ -1,4 +1,5 @@
 from .base import *
+import os
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -11,10 +12,10 @@ ALLOWED_HOSTS = []
 DATABASES = {
     "default": {
         "ENGINE": 'django.db.backends.mysql',
-        "HOST": "localhost",
-        "PORT": "3306",
-        "USER": "root",
-        "PASSWORD": "Root@44223",
-        "NAME": "blog_info",
+        "HOST": os.getenv("HOST"),
+        "PORT": os.getenv("PORT"),
+        "USER": os.getenv("USER"),
+        "PASSWORD": os.getenv("PASSWORD"),
+        "NAME": os.getenv("DB_NAME"),
     }
 }
