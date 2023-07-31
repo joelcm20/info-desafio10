@@ -1,67 +1,70 @@
 {% extends "layout.html" %}
 {% block content %}
-<main class="container mb-3">
+<main class="mb-3">
   <h1 class="text-center text-white display-6 my-5">Recetas</h1>
-  <div class="row gap-2">
 
-<div class="d-flex flex-row gap-2">
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
-      aria-expanded="false">
-      Categorias Disponibles
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      {% for cat in categorias %}
-      <li><a class="dropdown-item" href="?categoria={{ cat.pk }}">{{ cat.nombre }}</a></li>
-      {% endfor %}
-    </ul>
-  </div>
-  
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          Ordenar Por
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li><a href="?antiguedad_asc=1">Más antiguas</a></li>
-          <li><a href="?antiguedad_desc=1">Más recientes</a></li>
-          <li><a href="?orden_asc=1">Alfabético ascendente</a></li>
-          <li></li><a href="?orden_desc=1">Alfabético descende..</a></li>
-        </ul>
-      </div>
+  <div class="d-flex flex-row gap-2 my-3">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Categorias Disponibles
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        {% for cat in categorias %}
+        <li><a class="dropdown-item" href="?categoria={{ cat.pk }}">{{ cat.nombre }}</a></li>
+        {% endfor %}
+      </ul>
     </div>
-    <br>
-    {% if recetas %} {% for receta in recetas %}
-    <div class="col-sm-12 col-md-4 card">
-      <img src="{{receta.imagen.url}}" class="card-img-top img-fluid" alt="{{receta.nombre}}"
-        style="object-fit: cover; width: 250; height: 250px;" />
-      <div class="card-body">
-        <h5 class="card-title text-center">{{receta.nombre}}</h5>
 
-        <div class="d-flex justify-content-between align-items-center">
-          <a href="{% url 'detalle-receta' receta.id %}" class="btn btn-primary">go to detail</a>
-          {% if receta.usuario == user %}
-          <div class="dropdown px-2">
-            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa-solid fa-gear"></i>
-            </a>
-            <ul class="dropdown-menu text-small">
-              <li><a class="dropdown-item" href="{% url 'actualizar-receta' receta.id %}">Actualizar</a></li>
-              <li>
-                <form method="post">
-                  {% csrf_token %}
-                  <input type="hidden" name="borrar-recetas" value="{{receta.id}}">
-                  <button type="submit" class="dropdown-item">Borrar</button>
-                </form>
-              </li>
-            </ul>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Ordenar Por
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li><a class="dropdown-item" href="?antiguedad_asc=1">Más antiguas</a></li>
+        <li><a class="dropdown-item" href="?antiguedad_desc=1">Más recientes</a></li>
+        <li><a class="dropdown-item" href="?orden_asc=1">Alfabético ascendente</a></li>
+        <li><a class="dropdown-item" href="?orden_desc=1">Alfabético descende..</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row gap-2">
+    {% if recetas %}
+    <div class="recetas">
+      {% for receta in recetas %}
+      <div class="card">
+        <img src="{{receta.imagen.url}}" class="card-img-top img-fluid" alt="{{receta.nombre}}"
+          style="object-fit: cover;" />
+        <div class="card-body">
+          <h5 class="card-title text-center">{{receta.nombre}}</h5>
+          <div class="d-flex justify-content-between align-items-center">
+            <a href="{% url 'detalle-receta' receta.id %}" class="btn btn-primary">go to detail</a>
+            {% if receta.usuario == user %}
+            <div class="dropdown px-2">
+              <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-gear"></i>
+              </a>
+              <ul class="dropdown-menu text-small">
+                <li><a class="dropdown-item" href="{% url 'actualizar-receta' receta.id %}">Actualizar</a></li>
+                <li>
+                  <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="borrar-recetas" value="{{receta.id}}">
+                    <button type="submit" class="dropdown-item">Borrar</button>
+                  </form>
+                </li>
+              </ul>
+            </div>
+            {% endif %}
           </div>
-          {% endif %}
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %} {%else%}
+    {%else%}
     <div class="alert alert-warning" role="alert">No hay recetas todavia.</div>
     {% endif %}
   </div>

@@ -36,6 +36,13 @@ body {
   font-family: inherit;
 }
 
+.recetas {
+  display: grid;
+  gap: 5px;
+  place-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(auto, 250px));
+}
+
 /* Estilos para la sección del encabezado */
 
 .heading-section h2 {

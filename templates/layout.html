@@ -35,7 +35,7 @@
                 <a href="{% url 'recetas' %}" class="nav-link">Recetas</a>
               </li>
               <li class="nav-item">
-                <a href=" {% url 'acerca-de' %}" class="nav-link">AcercaDe</a>
+                <a href=" {% url 'acerca-de' %}" class="nav-link">Nosotros</a>
               </li>
               <li class="nav-item">
                 <a href=" {% url 'contacto' %}"
@@ -73,7 +73,7 @@
               </li>
               <li class="nav-item">
                 <a href=" {% url 'acerca-de' %}"
-                  class="nav-link {% if request.resolver_match.url_name == 'acerda-de' %}active{% endif %}">AcercaDe</a>
+                  class="nav-link {% if request.resolver_match.url_name == 'acerda-de' %}active{% endif %}">Nosotros</a>
               </li>
               <li class="nav-item">
                 <a href=" {% url 'contacto' %}"
@@ -111,7 +111,7 @@
               </li>
               <li class="nav-item">
                 <a href=" {% url 'acerca-de' %}"
-                  class="nav-link {% if request.resolver_match.url_name == 'acerca-de' %}active{% endif %}">AcercaDe</a>
+                  class="nav-link {% if request.resolver_match.url_name == 'acerca-de' %}active{% endif %}">Nosotros</a>
               </li>
               <li class="nav-item">
                 <a href=" {% url 'contacto' %}"
@@ -133,18 +133,18 @@
         <div class="col-md-6">
           <div class="contact-info">
             <h3>Contacto</h3>
-            <p><i class="fa fa-phone"></i> (+00) 1234 5678</p>
+            <p><i class="fa fa-phone"></i> (362) 4234 5678</p>
             <p><i class="fa fa-map-marker"></i> Almirante Brown 3660</p>
             <p><i class="fa fa-envelope"></i> TuCocina@example.com</p>
           </div>
         </div>
         <div class="col-md-6">
-          <div class="about-us">
+          <div class="about-us" style="text-align: left; margin: 10px;">
             <h3>Acerca de nosotros</h3>
-            <p>Una empanada es una fina masa de pan,<br>
-              masa quebrada u hojaldre rellena con una preparación<br>
-              salada o dulce y cocida al horno o frita.<br>
-              El relleno puede incluir carnes rojas o blancas, queso, pescado, verduras o fruta.</p>
+            <p>Bienvenidos a nuestra misión de elevar tu cocina a nuevas alturas.<br>
+              Explorando el mundo culinario, un festín de sabores exquisitos, <br>
+              satisfacemos todos los paladares con recetas fáciles e innovadoras.<br>
+              Es hora de pdespertar tu creatividad culinaria con nuestras creaciones gastronómicas.</p>
           </div>
         </div>
       </div>
@@ -156,9 +156,9 @@
             <p class="rights">© 2023 All rights reserved by Grupo 10 - informatorio</p>
           </div>
           <div class="col-md-6 social-icons">
-            <a href="#" class="fa fa-facebook"></a>
-            <a href="#" class="fa fa-twitter"></a>
-            <a href="#" class="fa fa-instagram"></a>
+            <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+            <a href="https://twitter.com/" class="fa fa-twitter"></a>
+            <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
           </div>
         </div>
       </div>
