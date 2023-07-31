@@ -1,4 +1,8 @@
 from .base import *
+import os
+from dotenv import load_dotenv
+
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -11,10 +15,10 @@ ALLOWED_HOSTS = []
 DATABASES = {
     "default": {
         "ENGINE": 'django.db.backends.mysql',
-        "HOST": "localhost",
-        "PORT": "3306",
-        "USER": "root",
-        "PASSWORD": "Root@44223",
-        "NAME": "blog_info",
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "NAME": os.getenv("DB_NAME"),
     }
 }
