@@ -2,10 +2,13 @@
 
 {% block content %}
 
-<main class="container" style="min-height: 100vh; display: flex; justify-content: center; align-items: center;">
+<main class="container" style="min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 0;">
     <div class="row">
-      <div class="col-md-6" style="background-color: rgba(255, 255, 255, 0.8); border-radius: 10px; padding: 20px; margin-top: 50px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: flex; align-items: center;">
-        <div style="flex: 1;">
+      <div class="col-md-8 offset-md-2 col-lg-10 offset-lg-1" style="background-color: rgba(255, 255, 255, 0.8); border-radius: 10px; padding: 20px; margin-top: 50px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: flex; flex-wrap: wrap; align-items: center;">
+        <div class="col-md-12 col-lg-6 order-lg-2" style="flex: 2; text-align: center;">
+          <img src="https://www.clara.es/medio/2021/12/16/que-comer-hoy_1962056a_1280x1167.jpg" alt="imagen Acerca de" style="max-width: 100%; border-radius: 10px;">
+        </div>
+        <div class="col-md-12 col-lg-6 order-lg-1" style="flex: 1;">
           <div class="my-4">
             <div class="about-us">
               <h3 style="text-align: center;">Acerca de nosotros</h3>
@@ -19,7 +22,7 @@
             </div>
           </div>
           <h3 style="text-align: center;">INTEGRANTES</h3>
-          <ol style="text-align: left; padding-left: 20px;">
+          <ol style="text-align: left; padding-left: 15px;">
             <li>Pablo Acevedo</li>
             <li>Matías Gastón Serial Trachta</li>
             <li>Mauro Rodrigo Lugo</li>
@@ -31,12 +34,9 @@
             <li>Adrián Fabricio A. Herrera</li>
           </ol>
         </div>
-        <div style="flex: 1; text-align: center;">
-          <img src="https://www.clara.es/medio/2021/12/16/que-comer-hoy_1962056a_1280x1167.jpg" alt="imagen Acerca de" style="max-width: 100%; border-radius: 10px;">
-        </div>
       </div>
     </div>
-  </main>
+</main>
 
 
 {% endblock %}
