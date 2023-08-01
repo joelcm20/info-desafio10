@@ -7,8 +7,8 @@ from apps.usuario.utils import is_registered, is_collaborator
 
 # Create your views here.
 
-@user_passes_test(is_registered)
-def crearComentario(request):
+@user_passes_test(is_registered) # este decorador verifica que el usuario sea un usuario registrado
+def crearComentario(request): # funcionalidad para que un usuario pueda crear un nuevo comentario hacia una receta en especifico segun su id
     if request.method == "POST":
         receta_id = request.POST["receta"]
         texto = request.POST["texto"]
@@ -17,8 +17,8 @@ def crearComentario(request):
         Comentario.objects.create(receta=receta, usuario=usuario, texto=texto)
         return redirect("detalle-receta", id=receta_id)
 
-@user_passes_test(is_registered)
-def borrarComentario(request, id):
+@user_passes_test(is_registered) # este decorador verifica que el usuario sea un usuario registrado
+def borrarComentario(request, id):# funcion para borrar un comentario en especifico segun su id, los colaboradores podran borrar todos, pero un usuario normal solo los propios
     if not request.method == "POST":
         return HttpResponse(status=404)
 

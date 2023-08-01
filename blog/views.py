@@ -4,11 +4,11 @@ from django.contrib.auth import login, logout, authenticate
 from apps.usuario.models import Usuario
 from django.db import IntegrityError
 
-
+# funcion que renderiza el el template home
 def home(request):
     return render(request, "home.html")
 
-
+# funcion para registrar usuarios y renderizar el template signup
 def signUp(request):
     if request.method == "GET":
         return render(request, "signup.html", {"form": UserCreationForm})
@@ -25,12 +25,12 @@ def signUp(request):
     except IntegrityError:
         return render(request, "signup.html", {"form": UserCreationForm, "error": "user already exists. please try a different username."})
 
-
+# funcion para desloguearse o cerrar session
 def signOut(request):
     logout(request)
     return redirect("home")
 
-
+# funcion para iniciar session
 def signIn(request):
     if request.method == "GET":
         return render(request, "signin.html", {"form": AuthenticationForm})
@@ -44,6 +44,6 @@ def signIn(request):
     login(request, usuario)
     return redirect("recetas")
 
-
+# funcion para renderizar el template acercade
 def acercaDe(request):
     return render(request, "acercade.html")

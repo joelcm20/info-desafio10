@@ -9,15 +9,16 @@ from apps.usuario.utils import is_registered, is_collaborator
 
 
 # Create your views here.
+
+# funcion para obtener todas las recetas, funcionalidad/logica de filtros
+# y funcionalidad para borrar una receta
 def getReceta(request):
     recetas = Receta.objects.all()
-
 
     categoria = request.GET.get('categoria')
     if categoria:
         recetas = recetas.filter(id_categoria=categoria)
 
-  
     if 'antiguedad_asc' in request.GET:
         recetas = recetas.order_by('fecha_publicacion')
     elif 'antiguedad_desc' in request.GET:
@@ -27,19 +28,18 @@ def getReceta(request):
     elif 'orden_desc' in request.GET:
         recetas = recetas.order_by('-nombre')
 
-
     if request.method == "POST" and "borrar-recetas" in request.POST:
         usuario = request.user
         receta_id = int(request.POST["borrar-recetas"])
         receta = get_object_or_404(Receta, id=receta_id, usuario=usuario)
         Receta.delete(receta)
 
-
     categorias = Categoria.objects.all()  # Asume que tienes un modelo Categoria
 
     return render(request, "recetas.html", {"recetas": recetas, "categorias": categorias})
 
-
+# funcion para objeter una receta especifica por su id con toda su informacion
+# incluyendo comentarios
 def detalleReceta(request, id):
     receta = get_object_or_404(Receta, id=id)
     comments = Comentario.objects.filter(receta=receta)
@@ -49,7 +49,9 @@ def detalleReceta(request, id):
         "form": CommentForm})
 
 
+# este decorador verifica que el usuario sea un colaborador
 @user_passes_test(is_collaborator)
+# funcion para renderizar template para crear receta y logica para crear receta
 def crearReceta(request):
     if request.method == "POST":
         form = RecetaForm(request.POST, request.FILES)
@@ -69,16 +71,20 @@ def crearReceta(request):
             "form": form
         })
 
+
+# este decorador verifica que el usuario sea un colaborador
 @user_passes_test(is_collaborator)
-def borrarReceta(request, id):
+def borrarReceta(request, id):  # funcion para borrar una receta en especifico segun el id
     if request.method == "POST":
         usuario = request.user
         receta = get_object_or_404(Receta, id=id, usuario=usuario)
         Receta.delete(receta)
         return redirect("receta")
 
+
+# este decorador verifica que el usuario sea un colaborador
 @user_passes_test(is_collaborator)
-def actualizarReceta(request, id):
+def actualizarReceta(request, id): # funcion para actualizar los datos de una receta existente y tambien renderiza el formulario para hacerlo
     receta = get_object_or_404(Receta, id=id)
     form = RecetaForm(instance=receta)
 
@@ -89,8 +95,9 @@ def actualizarReceta(request, id):
     form.save()
     return redirect("detalle-receta", id)
 
-@user_passes_test(is_collaborator)
-def getCategorias(request):
+
+@user_passes_test(is_collaborator) # este decorador verifica que el usuario sea un colaborador
+def getCategorias(request): # funcion para obtener todas las categorias y logica para eliminar una en especifico segun su id
     if request.method == "POST" and not "eliminar-categoria" in request.POST:
         nombre_categoria = request.POST["nombre"]
         Categoria.objects.create(nombre=nombre_categoria)
