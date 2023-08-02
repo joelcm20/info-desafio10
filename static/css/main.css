@@ -1,27 +1,19 @@
-/* styles.css */
-
 /* Colores */
 :root {
-  --color-orange: #ff9800; /* Naranja suave */
-  --color-green: #0f9d58; /* Verde */
-  --color-gray-light: #f7f7f7; /* Gris claro */
-  --color-gray: #33333372; /* Gris */
-  --color-white: #fff; /* Blanco */
+  --color-orange: #ff9800;
+  --color-green: #0f9d58;
+  --color-gray-light: #f7f7f7;
+  --color-gray: #33333372;
+  --color-white: #fff;
 }
 
 body {
-  /* Ubicación de la imagen */
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url("../img/cocina.jpg");
-  /* Para dejar la imagen de fondo centrada, vertical y horizontalmente */
   background-position: center center;
-  /* Para que la imagen de fondo no se repita */
   background-repeat: no-repeat;
-  /* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
   background-attachment: fixed;
-  /* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
   background-size: cover;
-  /* Se muestra un color de fondo mientras se está cargando la imagende fondo o si hay problemas para cargarla */
   background-color: #6699;
 }
 
@@ -32,7 +24,7 @@ body {
 }
 
 .receta-info {
-  white-space: pre-wrap; /* Permite respetar los saltos de línea */
+  white-space: pre-wrap;
   font-family: inherit;
 }
 
@@ -44,7 +36,6 @@ body {
 }
 
 /* Estilos para la sección del encabezado */
-
 .heading-section h2 {
   font-size: 36px;
   font-weight: 700;
@@ -73,16 +64,14 @@ body {
 /* Estilos para las imágenes en las tarjetas */
 .card-img-top {
   object-fit: cover;
-  width: 100%; /* El 100% del ancho del contenedor */
-  height: 200px; /* Ajusta la altura según tus necesidades */
-  transition: transform 0.2s; /* Añade una transición para el efecto de resaltado */
+  width: 100%;
+  height: 200px;
+  transition: transform 0.2s;
 }
 
 /* Efecto de resaltado al pasar el mouse sobre las imágenes */
 .card-img-top:hover {
-  transform: scale(
-    1.05
-  ); /* Ajusta el valor para cambiar el tamaño en el resaltado */
+  transform: scale(1.05);
 }
 
 /* Estilos para la sección de contenido */
@@ -132,19 +121,87 @@ body {
   margin-left: 10px;
 }
 
+
+/* Estilos para el contenido principal */
+.content-container {
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 1200px; /* Ajusta el valor del ancho máximo aquí */
+}
+
+.about-us {
+  width: 50%;
+  float: left;
+}
+
+.about-us h3 {
+  text-align: center; /* Centra el título "Acerca de nosotros" */
+}
+
+.image-container {
+  width: 50%;
+  float: right;
+}
+
+
+.separation{
+  height: 70vh;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.video-container {
+  clear: both;
+  margin-top: 40px; /* Ajusta el valor del margen superior del video */
+  margin-bottom: 40px; /* Ajusta el valor del margen inferior del video */
+  display: flex;
+  justify-content: center; /* Centra el video horizontalmente */
+}
+
+.video-container iframe {
+  width: 100%; /* Ajusta el valor de ancho del video para dispositivos móviles */
+  height: 400px; /* Ajusta el valor de altura del video según tus necesidades */
+}
+
+.team {
+  margin-top: 20px;
+}
+
 /* Estilos responsivos */
 @media (max-width: 768px) {
-  .footer {
-    text-align: center;
+  .about-us,
+  .image-container {
+    width: 100%;
+    float: none;
   }
-  .footer .col-md-6 {
-    margin-bottom: 30px;
+
+  .video-container iframe {
+    height: 200px; /* Ajusta el valor de altura del video para dispositivos móviles */
   }
-  .footer-bar .col-md-6 {
-    text-align: left;
-  }
-  .footer-bar .social-icons {
-    text-align: left;
-    margin-top: 10px;
+}
+
+
+/* Estilos para el video */
+.main-container .video-container {
+  margin-top: 20px;
+}
+
+/* Estilos para los integrantes */
+.main-container .team {
+  margin-top: 20px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .main-container .about-us,
+  .main-container .image-container {
+    width: 100%;
+    float: none;
   }
 }

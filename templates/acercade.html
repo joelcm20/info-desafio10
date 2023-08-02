@@ -2,41 +2,42 @@
 
 {% block content %}
 
-<main class="container" style="min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 0;">
-    <div class="row">
-      <div class="col-md-8 offset-md-2 col-lg-10 offset-lg-1" style="background-color: rgba(255, 255, 255, 0.8); border-radius: 10px; padding: 20px; margin-top: 50px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: flex; flex-wrap: wrap; align-items: center;">
-        <div class="col-md-12 col-lg-6 order-lg-2" style="flex: 2; text-align: center;">
-          <img src="https://www.clara.es/medio/2021/12/16/que-comer-hoy_1962056a_1280x1167.jpg" alt="imagen Acerca de" style="max-width: 100%; border-radius: 10px;">
-        </div>
-        <div class="col-md-12 col-lg-6 order-lg-1" style="flex: 1;">
-          <div class="my-4">
-            <div class="about-us">
-              <h3 style="text-align: center;">Acerca de nosotros</h3>
-              <p style="text-align: left;">Explorando el mundo culinario, un festín de sabores exquisitos.<br>
-                Satisfacemos todos los paladares con recetas fáciles e innovadoras.<br>
-                Despierta tu creatividad culinaria con nuestras creaciones gastronómicas.</p>
-              <br>
-              <p style="text-align: left;">En nuestro grupo de estudio, proveniente de Chaco,<br>
-                nos unimos con determinación para conquistar los desafíos de programación.<br>
-                Juntos, hemos trascendido fronteras y llevado nuestras habilidades al mundo entero.</p>
-            </div>
-          </div>
-          <h3 style="text-align: center;">INTEGRANTES</h3>
-          <ol style="text-align: left; padding-left: 15px;">
-            <li>Pablo Acevedo</li>
-            <li>Matías Gastón Serial Trachta</li>
-            <li>Mauro Rodrigo Lugo</li>
-            <li>Julio R. Escanciano Gonzale</li>
-            <li>Gabriel Leiva</li>
-            <li>Joel Chavez</li>
-            <li>Maximiliano Imanol Aguer</li>
-            <li>Cristian J. Salto</li>
-            <li>Adrián Fabricio A. Herrera</li>
-          </ol>
-        </div>
-      </div>
-    </div>
-</main>
+<main class="container content-container" class="gap-5">
+  <div class="about-us">
+    <h3>Acerca de nosotros</h3><br>
+    
+    <p>Explorando el mundo culinario, un festín de sabores exquisitos.<br>
+        Satisfacemos todos los paladares con recetas fáciles e innovadoras.<br>
+        Despierta tu creatividad culinaria con nuestras creaciones gastronómicas.</p>
+    <br>    
+    <p>En nuestro grupo de estudio, proveniente de Chaco,<br>
+        nos unimos con determinación para conquistar los desafíos de programación.<br>
+        Juntos, hemos trascendido fronteras y llevado nuestras habilidades al mundo entero.
+    </p>
+  </div>
+  <div class="image-container">
+    <img src="https://www.clara.es/medio/2021/12/16/que-comer-hoy_1962056a_1280x1167.jpg" alt="Imagen del grupo">
+  </div>
 
+  <div class="separation"></div>
+  <div class="video-container">
+    <iframe width="100%" height="400" src="https://www.youtube.com/embed/tN5KG_EXhCY" frameborder="1" allowfullscreen></iframe>
+  </div>
+  
+  <div class="team">
+    <h3>Integrantes</h3>
+    <ol>
+      <li>Pablo Acevedo</li>
+      <li>Matías Gastón Serial Trachta</li>
+      <li>Mauro Rodrigo Lugo</li>
+      <li>Julio R. Escanciano Gonzale</li>
+      <li>Gabriel Leiva</li>
+      <li>Joel Chavez</li>
+      <li>Maximiliano Imanol Aguer</li>
+      <li>Cristian J. Salto</li>
+      <li>Adrián Fabricio A. Herrera</li>
+    </ol>
+  </div>
+</main>
 
 {% endblock %}

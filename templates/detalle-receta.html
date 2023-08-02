@@ -61,15 +61,19 @@
               <i class="fa-sharp fa-regular fa-user"></i>
               {{comment.usuario.username}}
             </div>
-            <form action="{% url 'delete-comment' comment.id %}" method="post">
-              {% if comment.usuario == user or user|user_belongs_to_group:"Collaborator" %}
-              {% csrf_token %}
-              <button class="btn btn-link text-danger"><i class="fa-sharp fa-solid fa-delete-left"></i></button>
-              {% else %}
-              <button disabled class="btn btn-link text-danger"><i
-                  class="fa-sharp fa-solid fa-delete-left"></i></button>
+
+            <div class="d-flex gap-2">
+              {% if comment.usuario == user %}
+              <a class="btn btn-link text-success px-0" href="{% url 'editar-comentario' comment.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
               {% endif %}
-            </form>
+              <form action="{% url 'delete-comment' comment.id %}" method="post">
+                {% if comment.usuario == user or user|user_belongs_to_group:"Collaborator" %}
+                {% csrf_token %}
+                <button class="btn btn-link text-danger px-0"><i class="fa-sharp fa-solid fa-delete-left"></i></button>
+
+                {% endif %}
+              </form>
+            </div>
           </div>
           <div class="card-text fst-italic">{{comment.texto}}</div>
         </div>

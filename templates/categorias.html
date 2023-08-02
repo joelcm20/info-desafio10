@@ -9,11 +9,16 @@
                 {% for categoria in categorias %}
                 <li class="list-group-item my-1 d-flex align-items-center justify-content-between">
                     {{categoria.nombre}}
-                    <form method="post">
-                        {% csrf_token %}
-                        <input type="hidden" name="eliminar-categoria" value="{{categoria.id}}">
-                        <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                    </form>
+                    <div class="d-flex">
+                        <input type="hidden" value="{{categoria.nombre}}">
+                        <button class="btn-edit-categoria btn btn-success" data-id="{{ categoria.id }}"><i
+                                class="fa-solid fa-pen-to-square"></i></button>
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="eliminar-categoria" value="{{categoria.id}}">
+                            <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                        </form>
+                    </div>
                 </li>
                 {% empty %}
                 <div class="alert alert-info">No hay categorias.</div>

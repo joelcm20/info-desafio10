@@ -3,7 +3,7 @@ from .forms import ContactoForm
 
 # Create your views here.
 
-
+# funcionalidad para renderizar el template contacto y su formulario guardando los datos en la base de datos 
 def contacto(request):
     if request.method == 'POST':
         form = ContactoForm(request.POST)
