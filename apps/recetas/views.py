@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 import json
 from .forms import RecetaForm, CategoriaForm
 from .models import Receta, Categoria
@@ -15,6 +15,10 @@ from apps.usuario.utils import is_registered, is_collaborator
 # y funcionalidad para borrar una receta
 def getReceta(request):
     recetas = Receta.objects.all()
+
+    if request.method == "POST" and "buscar-recetas" in request.POST:
+        nombre_recetas = request.POST.get("buscar-recetas")
+        recetas = recetas.filter(nombre__icontains=nombre_recetas)
 
     categoria = request.GET.get('categoria')
     if categoria:
@@ -121,6 +125,7 @@ def getCategorias(request):
         "form": CategoriaForm
     })
 
+
 @user_passes_test(is_collaborator)
 def editarCategoria(request, id):
     if request.method != "POST":
@@ -134,3 +139,4 @@ def editarCategoria(request, id):
     categoria.nombre = nueva_categoria
     categoria.save()
     return JsonResponse({'msg': 'Comentario actualizado correctamente.'})
+
