@@ -1,9 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
 <main class="mb-3">
-  <h1 class="text-center text-white display-6 my-5">Recetas</h1>
+  <h1 class="text-center text-white display-6 my-3 my-md-5">Recetas</h1>
 
-  <div class="d-flex flex-row gap-2 my-3">
+  <div
+    class="container d-flex flex-column flex-md-row justify-content-center justify-content-md-start align-items-center gap-2 my-3">
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
         aria-expanded="false">
@@ -28,6 +29,33 @@
         <li><a class="dropdown-item" href="?orden_asc=1">Alfabético ascendente</a></li>
         <li><a class="dropdown-item" href="?orden_desc=1">Alfabético descende..</a></li>
       </ul>
+    </div>
+
+    {# boton abrir search modal #}
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#search-modal">
+      Buscar Receta
+    </button>
+  </div>
+
+  {# search modal #}
+  <div class="modal fade" id="search-modal" tabindex="-1" aria-labelledby="search-modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="search-modal-label">Buscar receta por su nombre</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'recetas' %}" method="post">
+            {% csrf_token %}
+            <input autofocus type="text" name="buscar-recetas" class="form-control" placeholder="Buscar receta">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Buscar</button>
+        </div>
+      </div>
     </div>
   </div>
 
