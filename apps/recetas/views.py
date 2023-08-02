@@ -138,5 +138,4 @@ def editarCategoria(request, id):
     nueva_categoria = data.get("nombre")
     categoria.nombre = nueva_categoria
     categoria.save()
-    return JsonResponse({'msg': 'Comentario actualizado correctamente.'})
-
+    return JsonResponse({'msg': 'Categoria actualizado correctamente.'})
