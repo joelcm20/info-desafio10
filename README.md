@@ -1,8 +1,5 @@
-Blog de Cocina - Grupo 10, Comisión 6 (Etapa 2)
-
-¡Bienvenidos al Blog de Cocina del Grupo 10! 
-Somos un equipo de entusiastas de la cocina que hemos creado este proyecto como parte de la Etapa 2 del Informatorio. 
-Aquí compartiremos recetas, tips culinarios y muchas delicias más.
+¡Bienvenidos al Blog de Cocina del Grupo 10! Somos un equipo de desarrolladores y 
+hemos creado este blog como proyecto final para la Etapa 2 del Informatorio.
 
 Integrantes del Grupo:
 
