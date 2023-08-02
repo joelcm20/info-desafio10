@@ -10,6 +10,7 @@
         Categorias Disponibles
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li><a class="dropdown-item" href="?todas">Todas</a></li>
         {% for cat in categorias %}
         <li><a class="dropdown-item" href="?categoria={{ cat.pk }}">{{ cat.nombre }}</a></li>
         {% endfor %}

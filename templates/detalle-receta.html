@@ -11,11 +11,17 @@
           alt="{{receta.imagen.url}}" />
       </div>
     </div>
+    <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="" data-size=""><a
+        target="_blank"
+        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+        class="fb-xfbml-parse-ignore">Compartir</a>
+    </div>
 
     <div class="col-12 col-md-7">
       <h3 class="text-center text-white py-3">{{receta.nombre}}</h3>
       <p class="receta-info text-white">{{receta.ingredientes}}</p>
 
+      {# Comprueba si el usuario actual es el dueño de la receta #}
       {% if receta.usuario == user %}
       <div class="actions d-flex mt-5 gap-2">
         <form method="post" action="{% url 'recetas' %}">
@@ -85,4 +91,7 @@
 
   </div>
 </main>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v17.0"
+  nonce="HIDaTXws"></script>
 {% endblock %}

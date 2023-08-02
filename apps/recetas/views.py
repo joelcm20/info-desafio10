@@ -16,10 +16,17 @@ from apps.usuario.utils import is_registered, is_collaborator
 def getReceta(request):
     recetas = Receta.objects.all()
 
+    # filtro para que devuelva todas
+    todas = request.GET.get('todas')
+    if todas:
+        recetas = Receta.objects.all()
+
+    # filtro x categorias individuales
     categoria = request.GET.get('categoria')
     if categoria:
         recetas = recetas.filter(id_categoria=categoria)
 
+    # filtro de ordenamiento de las recetas
     if 'antiguedad_asc' in request.GET:
         recetas = recetas.order_by('fecha_publicacion')
     elif 'antiguedad_desc' in request.GET:
