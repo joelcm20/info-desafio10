@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
-from django.http import HttpResponse
+from django.http import JsonResponse
+import json
 from .forms import RecetaForm, CategoriaForm
 from .models import Receta, Categoria
 from apps.comment.models import Comentario
@@ -40,6 +41,8 @@ def getReceta(request):
 
 # funcion para objeter una receta especifica por su id con toda su informacion
 # incluyendo comentarios
+
+
 def detalleReceta(request, id):
     receta = get_object_or_404(Receta, id=id)
     comments = Comentario.objects.filter(receta=receta)
@@ -84,7 +87,8 @@ def borrarReceta(request, id):  # funcion para borrar una receta en especifico s
 
 # este decorador verifica que el usuario sea un colaborador
 @user_passes_test(is_collaborator)
-def actualizarReceta(request, id): # funcion para actualizar los datos de una receta existente y tambien renderiza el formulario para hacerlo
+# funcion para actualizar los datos de una receta existente y tambien renderiza el formulario para hacerlo
+def actualizarReceta(request, id):
     receta = get_object_or_404(Receta, id=id)
     form = RecetaForm(instance=receta)
 
@@ -96,8 +100,10 @@ def actualizarReceta(request, id): # funcion para actualizar los datos de una re
     return redirect("detalle-receta", id)
 
 
-@user_passes_test(is_collaborator) # este decorador verifica que el usuario sea un colaborador
-def getCategorias(request): # funcion para obtener todas las categorias y logica para eliminar una en especifico segun su id
+# este decorador verifica que el usuario sea un colaborador
+@user_passes_test(is_collaborator)
+# funcion para obtener todas las categorias y logica para eliminar una en especifico segun su id
+def getCategorias(request):
     if request.method == "POST" and not "eliminar-categoria" in request.POST:
         nombre_categoria = request.POST["nombre"]
         Categoria.objects.create(nombre=nombre_categoria)
@@ -114,3 +120,17 @@ def getCategorias(request): # funcion para obtener todas las categorias y logica
         "categorias": categorias,
         "form": CategoriaForm
     })
+
+@user_passes_test(is_collaborator)
+def editarCategoria(request, id):
+    if request.method != "POST":
+        return JsonResponse({'msg': 'metodo no permitido!'}, status=405)
+
+    usuario = request.user
+    categoria = get_object_or_404(Categoria, id=id)
+
+    data = json.load(request)
+    nueva_categoria = data.get("nombre")
+    categoria.nombre = nueva_categoria
+    categoria.save()
+    return JsonResponse({'msg': 'Comentario actualizado correctamente.'})

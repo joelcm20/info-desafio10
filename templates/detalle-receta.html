@@ -65,9 +65,7 @@
               {% if comment.usuario == user or user|user_belongs_to_group:"Collaborator" %}
               {% csrf_token %}
               <button class="btn btn-link text-danger"><i class="fa-sharp fa-solid fa-delete-left"></i></button>
-              {% else %}
-              <button disabled class="btn btn-link text-danger"><i
-                  class="fa-sharp fa-solid fa-delete-left"></i></button>
+             
               {% endif %}
             </form>
           </div>
