@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 import json
 from .forms import RecetaForm, CategoriaForm
 from .models import Receta, Categoria
@@ -21,7 +21,11 @@ def getReceta(request):
     if todas:
         recetas = Receta.objects.all()
 
-    # filtro x categorias individuales
+    if request.method == "POST" and "buscar-recetas" in request.POST:
+        nombre_recetas = request.POST.get("buscar-recetas")
+        recetas = recetas.filter(nombre__icontains=nombre_recetas)
+
+     # filtro x categorias individuales
     categoria = request.GET.get('categoria')
     if categoria:
         recetas = recetas.filter(id_categoria=categoria)
@@ -48,8 +52,6 @@ def getReceta(request):
 
 # funcion para objeter una receta especifica por su id con toda su informacion
 # incluyendo comentarios
-
-
 def detalleReceta(request, id):
     receta = get_object_or_404(Receta, id=id)
     comments = Comentario.objects.filter(receta=receta)
@@ -128,6 +130,7 @@ def getCategorias(request):
         "form": CategoriaForm
     })
 
+
 @user_passes_test(is_collaborator)
 def editarCategoria(request, id):
     if request.method != "POST":
@@ -140,4 +143,4 @@ def editarCategoria(request, id):
     nueva_categoria = data.get("nombre")
     categoria.nombre = nueva_categoria
     categoria.save()
-    return JsonResponse({'msg': 'Comentario actualizado correctamente.'})
+    return JsonResponse({'msg': 'Categoria actualizado correctamente.'})

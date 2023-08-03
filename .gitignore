@@ -3,3 +3,4 @@ run.sh
 db.sqlite3
 media/
 .env.dev
+.env
