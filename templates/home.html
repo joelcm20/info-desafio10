@@ -16,20 +16,28 @@
         </h1>
         <hr>
         <p class="card-text text-break">
-          ¡Bienvenidos al delicioso mundo de nuestro blog de cocina! Aquí, te sumergirás en un festín de sabores, aromas y colores que desatarán tu pasión culinaria. Nuestra misión es llevar tu experiencia en la cocina a nuevas alturas, y para ello, hemos reunido las recetas más exquisitas y fáciles de seguir.
-          
-          Descubrirás una amplia variedad de platos que se adaptan a todos los paladares y ocasiones. Desde suculentos platillos tradicionales hasta innovadoras creaciones gastronómicas, estamos seguros de que encontrarás algo que satisfaga tus antojos y despierte tu creatividad culinaria.
+          ¡Bienvenidos al delicioso mundo de nuestro blog de cocina! Aquí, te sumergirás en un festín de sabores, aromas
+          y colores que desatarán tu pasión culinaria. Nuestra misión es llevar tu experiencia en la cocina a nuevas
+          alturas, y para ello, hemos reunido las recetas más exquisitas y fáciles de seguir.
 
-        <hr>
-        <br>
-        {% if user.is_authenticated and user|user_belongs_to_group:"Collaborator" %}
-        <h3>
-          ¡Aprovecha y crea una de tus recetas favoritas!
-        <h3>
+          Descubrirás una amplia variedad de platos que se adaptan a todos los paladares y ocasiones. Desde suculentos
+          platillos tradicionales hasta innovadoras creaciones gastronómicas, estamos seguros de que encontrarás algo
+          que satisfaga tus antojos y despierte tu creatividad culinaria.
+
+          <hr>
+          <br>
+          {% if not user.is_authenticated %}
+        <h3 class="text-center">
+          ¡Registrate para disfrutar de una experiencia mas interactiva!
+        </h3>
+        {% elif user|user_belongs_to_group:"Collaborator"%}
+        <h3 class="text-center">
+          ¡Ahora puedes crear tus propias recetas!
+        </h3>
         {% else %}
-          <h3>
-            ¡Registrate para disfrutar de una experiencia mas interactiva!
-          <h3>
+        <h3 class="text-center">
+          ¡Vea las mejores recetas!
+        </h3>
         {% endif %}
         <hr>
         </p>
