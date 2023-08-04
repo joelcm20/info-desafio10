@@ -120,7 +120,7 @@ LOGIN_URL = "sign-in"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # PWA CONFIG
-PWA_APP_NAME = 'Tu Cosina'
+PWA_APP_NAME = 'Tu Cocina'
 PWA_APP_DESCRIPTION = "Blog de cocina y las mejores recetas"
 PWA_APP_THEME_COLOR = '#0A0302'
 PWA_APP_BACKGROUND_COLOR = '#ffffff'
