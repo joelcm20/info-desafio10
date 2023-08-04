@@ -9,6 +9,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["joel20.pythonanywhere.com"]
 
+# to disable the the console.log on browser
+PWA_APP_DEBUG_MODE = False
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 

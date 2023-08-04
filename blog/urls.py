@@ -33,4 +33,5 @@ urlpatterns = [
     path("recetas/", include("apps.recetas.urls")),
     path("comment/", include("apps.comment.urls")),
     path('', include('apps.contacto.urls')),
+    path('', include('pwa.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

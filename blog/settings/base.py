@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pwa',
     'apps.usuario.apps.UsuarioConfig',
     'apps.recetas',
     'apps.comment',
@@ -117,3 +118,48 @@ LOGIN_URL = "sign-in"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# PWA CONFIG
+PWA_APP_NAME = 'Tu Cosina'
+PWA_APP_DESCRIPTION = "Blog de cocina y las mejores recetas"
+PWA_APP_THEME_COLOR = '#0A0302'
+PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'any'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/img/pwa_icon_blog.png',
+        'sizes': '160x160'
+    }
+]
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': '/static/img/pwd_icon_blog.png',
+        'sizes': '160x160'
+    }
+]
+""" PWA_APP_SPLASH_SCREEN = [
+    {
+        'src': '/static/images/icons/splash-640x1136.png',
+        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+    }
+] """
+PWA_APP_DIR = 'ltr'
+PWA_APP_LANG = 'es-ES'
+""" PWA_APP_SHORTCUTS = [
+    {
+        'name': 'TuCocina',
+        'url': '/target',
+        'description': 'Shortcut to a page in my application'
+    }
+] """
+""" PWA_APP_SCREENSHOTS = [
+    {
+        'src': '/static/images/icons/splash-750x1334.png',
+        'sizes': '750x1334',
+        "type": "image/png"
+    }
+] """

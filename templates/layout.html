@@ -1,5 +1,6 @@
 {% load custom_tags %}
 {% load static %}
+{% load pwa %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
   <link rel="icon" type="image/x-icon" href="{% static 'img/cuchilleria.png' %}">
   <title>TuCocina - Blog de Recetas</title>
+  {% progressive_web_app_meta %}
 </head>
 
 <body>
@@ -82,8 +84,7 @@
               {# enlace a admin #}
               {% if user.is_superuser%}
               <li class="nav-item">
-                <a href="/admin"
-                  class="nav-link">Panel-Admin</a>
+                <a href="/admin" class="nav-link">Panel-Admin</a>
               </li>
               {% endif %}
               <hr class="border border-primary border-3 opacity-75 d-md-none">
